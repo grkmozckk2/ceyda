@@ -65,6 +65,22 @@
       0% { transform: translateY(-100px); opacity: 1; }
       100% { transform: translateY(100vh); opacity: 0; }
     }
+
+    .light-effect {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: flash 1s ease-out forwards;
+      z-index: 6;
+    }
+
+    @keyframes flash {
+      from { opacity: 1; transform: scale(0.5); }
+      to { opacity: 0; transform: scale(3); }
+    }
   </style>
 </head>
 <body>
@@ -102,6 +118,17 @@
       heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
+    }
+
+    for (let i = 0; i < 20; i++) {
+      setTimeout(() => {
+        const light = document.createElement("div");
+        light.classList.add("light-effect");
+        light.style.left = Math.random() * window.innerWidth + "px";
+        light.style.top = Math.random() * window.innerHeight + "px";
+        document.body.appendChild(light);
+        setTimeout(() => light.remove(), 1000);
+      }, i * 150);
     }
   }
 </script>
