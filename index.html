@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senin İçin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: black;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: black;
+      opacity: 1;
+      z-index: 5;
+      transition: opacity 3s ease-in-out;
+    }
+
+    #photo {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      max-width: 80%;
+      border-radius: 20px;
+      z-index: 4;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #message1 {
+      color: white;
+      font-size: 28px;
+      text-align: center;
+      opacity: 0;
+      z-index: 6;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 2s ease-in-out;
+    }
+
+    #clickButton {
+      display: none;
+      position: fixed;
+      top: 60%; left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 25px;
+      font-size: 20px;
+      background-color: pink;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      z-index: 7;
+      transition: opacity 1s ease-in;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 48px;
+      color: deeppink;
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    #finalMessage {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      color: white;
+      text-align: center;
+      position: fixed;
+      top: 40%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 8;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="overlay"></div>
+<img id="photo" src="ceyda.jpg" alt="Ceyda">
+<div id="message1">sen tanımadan önce hayatım bunun kadar karanlıktı</div>
+<button id="clickButton" onclick="startHearts()">Tıkla bakalımm 💗</button>
+<div id="finalMessage">Bir gülüşünle içimdeki bütün duvarlar yıkıldı ve hayat da bunun gibi aydınlandı.</div>
+
+<script>
+  // Aşamalı açılış animasyonu
+  setTimeout(() => {
+    document.getElementById("overlay").style.opacity = 0.3;
+  }, 1000);
+
+  setTimeout(() => {
+    document.getElementById("photo").style.opacity = 1;
+  }, 4000);
+
+  setTimeout(() => {
+    document.getElementById("photo").style.opacity = 0;
+    document.getElementById("overlay").style.opacity = 1;
+  }, 7000);
+
+  setTimeout(() => {
+    document.getElementById("message1").style.opacity = 1;
+  }, 8500);
+
+  setTimeout(() => {
+    document.getElementById("message1").style.opacity = 0;
+    document.body.style.backgroundColor = "#ffb6c1"; // pembe
+  }, 11500);
+
+  setTimeout(() => {
+    document.getElementById("clickButton").style.display = "block";
+  }, 13000);
+
+  function startHearts() {
+    document.getElementById("clickButton").style.display = "none";
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 30 + 20 + "px";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setTimeout(() => {
+      document.getElementById("finalMessage").style.display = "block";
+    }, 3000);
+  }
+</script>
+</body>
+</html>
