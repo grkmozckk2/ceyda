@@ -30,7 +30,8 @@
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       opacity: 0;
-      max-width: 80%;
+      max-width: 90%;
+      max-height: 90%;
       border-radius: 20px;
       z-index: 4;
       transition: opacity 1s ease-in-out;
@@ -118,6 +119,7 @@
   setTimeout(() => {
     document.getElementById("message1").style.opacity = 0;
     document.body.style.backgroundColor = "#ffb6c1"; // pembe
+    startHearts(); // Kalp yağmurunu erkenden başlat
   }, 11500);
 
   setTimeout(() => {
@@ -125,7 +127,6 @@
   }, 13000);
 
   function startHearts() {
-    document.getElementById("clickButton").style.display = "none";
     for (let i = 0; i < 50; i++) {
       const heart = document.createElement("div");
       heart.classList.add("heart");
