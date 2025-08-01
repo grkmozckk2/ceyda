@@ -37,18 +37,6 @@
       transition: opacity 1s ease-in-out;
     }
 
-    #message1 {
-      color: white;
-      font-size: 28px;
-      text-align: center;
-      opacity: 0;
-      z-index: 6;
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 2s ease-in-out;
-    }
-
     #clickButton {
       display: none;
       position: fixed;
@@ -93,12 +81,12 @@
 
 <div id="overlay"></div>
 <img id="photo" src="ceyda.jpg" alt="Ceyda">
-<div id="message1">sen tanımadan önce hayatım bunun kadar karanlıktı</div>
-<button id="clickButton" onclick="startHearts()">Tıkla bakalımm 💗</button>
+<button id="clickButton" onclick="startHeartsAndMusic()">Tıkla bakalımm 💗</button>
 <div id="finalMessage">Bir gülüşünle içimdeki bütün duvarlar yıkıldı ve hayat da bunun gibi aydınlandı.</div>
+<audio id="bg-music" src="music.mp3"></audio>
 
 <script>
-  // Aşamalı açılış animasyonu
+  // Açılış: karanlıktan fotoğrafa
   setTimeout(() => {
     document.getElementById("overlay").style.opacity = 0.3;
   }, 1000);
@@ -108,25 +96,14 @@
   }, 4000);
 
   setTimeout(() => {
-    document.getElementById("photo").style.opacity = 0;
-    document.getElementById("overlay").style.opacity = 1;
+    document.getElementById("clickButton").style.display = "block";
   }, 7000);
 
-  setTimeout(() => {
-    document.getElementById("message1").style.opacity = 1;
-  }, 8500);
-
-  setTimeout(() => {
-    document.getElementById("message1").style.opacity = 0;
+  function startHeartsAndMusic() {
     document.body.style.backgroundColor = "#ffb6c1"; // pembe
-    startHearts(); // Kalp yağmurunu erkenden başlat
-  }, 11500);
+    const music = document.getElementById("bg-music");
+    music.play();
 
-  setTimeout(() => {
-    document.getElementById("clickButton").style.display = "block";
-  }, 13000);
-
-  function startHearts() {
     for (let i = 0; i < 50; i++) {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -137,6 +114,7 @@
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
     }
+
     setTimeout(() => {
       document.getElementById("finalMessage").style.display = "block";
     }, 3000);
