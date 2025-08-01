@@ -28,10 +28,12 @@
     #photo {
       position: fixed;
       top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(2);
       opacity: 0;
-      max-width: 90%;
-      max-height: 90%;
+      width: auto;
+      height: auto;
+      max-width: none;
+      max-height: none;
       border-radius: 20px;
       z-index: 4;
       transition: opacity 1s ease-in-out;
@@ -63,18 +65,6 @@
       0% { transform: translateY(-100px); opacity: 1; }
       100% { transform: translateY(100vh); opacity: 0; }
     }
-
-    #finalMessage {
-      font-family: 'Great Vibes', cursive;
-      font-size: 36px;
-      color: white;
-      text-align: center;
-      position: fixed;
-      top: 40%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 8;
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -82,7 +72,6 @@
 <div id="overlay"></div>
 <img id="photo" src="ceyda.jpg" alt="Ceyda">
 <button id="clickButton" onclick="startHeartsAndMusic()">Tıkla bakalımm 💗</button>
-<div id="finalMessage">Bir gülüşünle içimdeki bütün duvarlar yıkıldı ve hayat da bunun gibi aydınlandı.</div>
 <audio id="bg-music" src="music.mp3"></audio>
 
 <script>
@@ -114,10 +103,6 @@
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
     }
-
-    setTimeout(() => {
-      document.getElementById("finalMessage").style.display = "block";
-    }, 3000);
   }
 </script>
 </body>
