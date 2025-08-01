@@ -27,13 +27,13 @@
 
     #photo {
       position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) scale(2);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.2);
       opacity: 0;
-      width: auto;
+      width: 80vw;
+      max-width: 90%;
       height: auto;
-      max-width: none;
-      max-height: none;
       border-radius: 20px;
       z-index: 4;
       transition: opacity 1s ease-in-out;
@@ -42,23 +42,25 @@
     #clickButton {
       display: none;
       position: fixed;
-      top: 60%; left: 50%;
+      top: 80%;
+      left: 50%;
       transform: translateX(-50%);
-      padding: 12px 25px;
-      font-size: 20px;
+      padding: 14px 30px;
+      font-size: 5vw;
       background-color: pink;
       border: none;
       border-radius: 12px;
       cursor: pointer;
       z-index: 7;
       transition: opacity 1s ease-in;
+      white-space: nowrap;
     }
 
     .heart {
       position: absolute;
-      font-size: 48px;
       color: deeppink;
       animation: fall 4s linear infinite;
+      z-index: 3;
     }
 
     @keyframes fall {
@@ -68,8 +70,8 @@
 
     .light-effect {
       position: absolute;
-      width: 100px;
-      height: 100px;
+      width: 60px;
+      height: 60px;
       background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
@@ -80,6 +82,22 @@
     @keyframes flash {
       from { opacity: 1; transform: scale(0.5); }
       to { opacity: 0; transform: scale(3); }
+    }
+
+    @media (max-width: 600px) {
+      #photo {
+        width: 90vw;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      #clickButton {
+        font-size: 6vw;
+        padding: 12px 20px;
+      }
+
+      .heart {
+        font-size: 6vw !important;
+      }
     }
   </style>
 </head>
@@ -114,7 +132,7 @@
       heart.classList.add("heart");
       heart.innerText = "❤";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 30 + 20 + "px";
+      heart.style.fontSize = (Math.random() * 3 + 2) + "vw";
       heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
